@@ -5,14 +5,54 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// prisma/schema.prisma
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider  = "postgresql"
+  url  	    = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-model Notes {
-  id Int @id
-  content String
-  user String
-  createdAt DateTime @default(now())
+model Users {
+  id Int @id @default(autoincrement())
+  email String @unique
+  name String
+  password String
+  products Products[]
+  orders Orders[]
+  point Points?
+
+  // untuk cari emai berdasarkan index sehingga pencarian lebih cepat
+  @@index([email])
+}
+
+// 1. Bikin user_id untuk menampung id dari user di products schema
+// 2. bikin user field untuk menampung semua data user based on user_id
+// 3. bikin products field untuk menampung data products
+
+model Points {
+  id Int @id @default(autoincrement())
+  point Int
+  user_id Int @unique
+  user Users @relation(fields: [user_id], references: [id])
+}
+
+model Products{
+  id Int @id @default(autoincrement())
+  name String
+  desc String
+  price String
+  user_id Int
+  user Users @relation(fields: [user_id], references: [id])
+  orders Orders[]
+}
+
+model Orders{
+  id Int @id @default(autoincrement())
+  user_id Int // ini
+  user Users @relation(fields: [user_id], references: [id]) // not a real field
+  product_id Int // ini
+  product Products @relation(fields: [product_id], references: [id]) // not a real field
+
+  @@index([user_id])
+  @@index([product_id])
 }
