@@ -2,7 +2,7 @@ This is a Backend Project Basic with Next.js
 
 ## Routes
 
-First, run the development server:
+Product Routes:
 
 ```http
 
@@ -23,5 +23,21 @@ Delete Product
 DELETE  http://localhost:3000/api/v1/products/3
 
 
+```
+
+Auth Routes:
+
+```http
+
+Registering User
+POST http://localhost:3000/api/v1/auth/register
+
+Login User
+POST http://localhost:3000/api/v1/auth/login
+
+{
+  "email":"rasyid@gmail.com",
+  "password":"123456"
+}
 
 ```
