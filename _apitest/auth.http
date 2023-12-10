@@ -1,0 +1,18 @@
+### Registering User
+POST http://localhost:3000/api/v1/auth/register
+
+{
+  "name" : "Rasyid",
+  "email":"rasyid@gmail.com",
+  "password":"123456"
+}
+
+### Login User
+POST http://localhost:3000/api/v1/auth/login
+
+{
+  "email":"rasyid@gmail.com",
+  "password":"123456"
+}
+
+

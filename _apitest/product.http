@@ -1,0 +1,28 @@
+### create Product
+POST http://localhost:3000/api/v1/products
+
+{
+  "name":"Keyboard Mechanical Red",
+  "desc":"keyboard mechanical good good good",
+  "price": 40,
+  "user_id":"1"
+}
+
+### Get All Products
+GET  http://localhost:3000/api/v1/products
+
+### Find Certain Product
+GET  http://localhost:3000/api/v1/products?minp=20&maxp=80&q=keyboard
+
+### Get by Id
+GET  http://localhost:3000/api/v1/products/2
+
+### Patch by Id
+PATCH http://localhost:3000/api/v1/products/2
+
+{
+  "name" : "How to understand woman chapter 1001 updated"
+}
+
+### Delete Product
+DELETE  http://localhost:3000/api/v1/products/3
