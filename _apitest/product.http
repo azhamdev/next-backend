@@ -10,6 +10,7 @@ POST http://localhost:3000/api/v1/products
 
 ### Get All Products
 GET  http://localhost:3000/api/v1/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJkb3VibGVjaG9jQGdtYWlsLmNvbSIsIm5hbWUiOiJkb3VibGVjaG9jIiwiaWF0IjoxNzAyODk1MjE1fQ.tuhgAMm4E_BVbVnXCx-WVKKwxHQ1QgT6zjDsQvwbNN8
 
 ### Find Certain Product
 GET  http://localhost:3000/api/v1/products?minp=20&maxp=80&q=keyboard

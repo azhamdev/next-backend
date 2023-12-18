@@ -18,19 +18,25 @@ export async function POST(req) {
       return NextResponse.json({ message: "invalid email" }, { status: 204 })
     }
 
-    // const payload = {
-    //   id: findUser.id,
-    //   email: findUser.email,
-    //   name: findUser.name
-    // }
-
-    // const token = jwt.sign(payload, process.env.SECRET_KEY)
-
     const isPasswordMatch = await bcrypt.compare(password, findUser.password)
 
     if (!isPasswordMatch) {
       return NextResponse.json({ message: "Invalid Password" }, { status: 203 })
     }
+
+    const payload = {
+      id: findUser.id,
+      email: findUser.email,
+      name: findUser.name
+    }
+
+    const token = jwt.sign(payload, process.env.SECRET_KEY)
+
+    const res = NextResponse.json({ message: "Login Succesfully" }, { status: 200 })
+    res.cookies.set("token", token)
+
+    return res;
+
 
     // if (findUser.password === password) {
     //   const res = NextResponse.json({ message: "logged in successfully" }, { status: 200 })
@@ -38,9 +44,6 @@ export async function POST(req) {
 
     //   return res;
     // }
-
-    return NextResponse.json({ message: "Login Succesfully" }, { status: 200 })
-
 
 
   } catch (error) {

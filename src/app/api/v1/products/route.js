@@ -1,5 +1,6 @@
 import { prisma } from '@/utils/prisma';
 import { NextResponse } from 'next/server'
+// import jwt from 'jsonwebtoken';
 
 export async function GET(req) {
 
@@ -11,6 +12,8 @@ export async function GET(req) {
   let allProducts;
 
   try {
+
+    // jwt.verify(token, process.env.SECRET_KEY);
 
     if (query || minPrice || maxPrice) {
       allProducts = await prisma.products.findMany({
@@ -27,7 +30,6 @@ export async function GET(req) {
     } else {
       allProducts = await prisma.products.findMany();
     }
-
 
     return NextResponse.json({ message: "Product Fetched successfully", data: allProducts }, { status: 200 })
   } catch (error) {
